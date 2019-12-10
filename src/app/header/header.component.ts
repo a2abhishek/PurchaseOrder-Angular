@@ -8,6 +8,20 @@ import { AuthService } from '../auth/auth.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  ngOnInit() {}
+
+  isValid:boolean=false;
+  ngOnInit() {
+      
+      let obj=JSON.parse(sessionStorage.getItem("userObj"));
+      console.log(obj);
+      if(obj===null){
+
+        this.isValid=true;
+      }
+      else {
+        this.isValid=false;
+      }
+
+  }
 
 }

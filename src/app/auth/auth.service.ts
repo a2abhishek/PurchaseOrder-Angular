@@ -19,6 +19,6 @@ addUser(userObj:any):Observable<any>{
   }
 
   validateUser(userEmail:any,userPass:any):Observable<any>{
-    return this.http.post<any>("http://localhost:8025/PurchaseOrderUI/userLogin?userEmail="+userEmail+"&&userPass="+userPass,null,{responseType: 'text' as 'json'});
+    return this.http.post<any>("http://localhost:8025/PurchaseOrderUI/userLogin?userEmail="+userEmail+"&&userPass="+userPass,null);
   }
 }

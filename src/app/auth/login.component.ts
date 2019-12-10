@@ -31,20 +31,29 @@ export class LoginComponent implements OnInit {
     return this.loginForm.get('userPass');
   }
 
+  
+
   onSubmit()
 {
   this.p.validateUser(this.loginForm.value.userEmail,this.loginForm.value.userPass).subscribe(
     data=>{
-      let uObj = JSON.parse(data);
+      let uObj = data;
+
       this.logValue = true;
-      if(uObj.role === 'Buyer'){
-      
+
+      sessionStorage.setItem("userObj",JSON.stringify(uObj));
+      /*let obj=JSON.parse(sessionStorage.getItem("userObj"));
+      console.log(obj);*/
+
+      if(uObj.role == 'Buyer'){
+        alert("buyer");
       this.router.navigate(['./buyerPage']);
       }
-      else if(uObj.role ==='Seller'){
+      else if(uObj.role =='Seller'){
+        alert("seller");
         this.router.navigate(['./sellerPage']);
       }
-      else if(uObj.role === 'Vendor'){
+      else if(uObj.role == 'Vendor'){
         alert("vendor");
         this.router.navigate(['./vendorPage']);
       }

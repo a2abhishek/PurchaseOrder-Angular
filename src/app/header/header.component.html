@@ -6,10 +6,17 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-      <a class="nav-item nav-link" routerLink="/login" routerLinkActive="active">Login<span
+
+      <div *ngIf="isValid">
+        <a class="nav-item nav-link" routerLink="/login" routerLinkActive="active">Login<span
           class="sr-only">(current)</span></a>
-      <a class="nav-item nav-link" routerLink="/register" routerLinkActive="active">Register</a>
-      <a class="nav-item nav-link" routerLink="#" routerLinkActive="active">Don't know</a>
+        <a class="nav-item nav-link" routerLink="/register" routerLinkActive="active">Register</a>
+        <a class="nav-item nav-link" routerLink="#" routerLinkActive="active">Don't know</a>
+      </div> 
+
+      
+    
+
     </div>
   </div>
 </nav>

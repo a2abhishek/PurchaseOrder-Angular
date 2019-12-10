@@ -15,6 +15,9 @@ import { AuthService } from './auth/auth.service';
 import { BuyerComponent } from './buyer/buyer.component';
 import { SellerComponent } from './seller/seller.component';
 import { VendorComponent } from './vendor/vendor.component';
+import { VendorModule } from './vendor/vendor.module';
+import { BuyerModule } from './buyer/buyer.module';
+import { SellerModule } from './seller/seller.module';
 
 
 @NgModule({
@@ -25,16 +28,17 @@ import { VendorComponent } from './vendor/vendor.component';
     FooterComponent,
     PageNotFoundComponent,
     LoginComponent,
-    RegisterComponent,
-    BuyerComponent,
-    SellerComponent,
-    VendorComponent
+    RegisterComponent
+  
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    VendorModule,
+    BuyerModule,
+    SellerModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]
