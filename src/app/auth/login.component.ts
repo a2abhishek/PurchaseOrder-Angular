@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { UserService } from '../user.service';
+import { Router } from '@angular/router';
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-login',
@@ -9,10 +13,51 @@ import { Component, OnInit } from '@angular/core';
   ]
 })
 export class LoginComponent implements OnInit {
-
-  constructor() { }
+  logValue: boolean=false;
 
   ngOnInit() {
   }
+  constructor(private fb:FormBuilder,private p:AuthService,private router:Router) { }
 
+  loginForm = this.fb.group( {
+    userEmail:['',Validators.required],
+    userPass:['',Validators.required]
+  });
+
+  get userEmail() {
+    return this.loginForm.get('userEmail');
+  }
+  get userPass() {
+    return this.loginForm.get('userPass');
+  }
+
+  onSubmit()
+{
+  this.p.validateUser(this.loginForm.value.userEmail,this.loginForm.value.userPass).subscribe(
+    data=>{
+      let uObj = JSON.parse(data);
+      this.logValue = true;
+      if(uObj.role === 'Buyer'){
+      
+      this.router.navigate(['./buyerPage']);
+      }
+      else if(uObj.role ==='Seller'){
+        this.router.navigate(['./sellerPage']);
+      }
+      else if(uObj.role === 'Vendor'){
+        alert("vendor");
+        this.router.navigate(['./vendorPage']);
+      }
+      else
+      {
+        alert(" invalid!");
+        this.router.navigate(['./']);
+     }
+     
+    },
+    error=>{
+      alert("Email or Password is incorrect");
+    }
+  );
+  }
 }

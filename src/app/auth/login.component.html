@@ -1,12 +1,19 @@
 <div class="login">
     <h1>Login</h1>
-        <form method="post" action="signIn">
-            <input type="email" name="userEmail" placeholder="Email" required="required" />
-            <input type="password" name="userPass" placeholder="Password" required="required" />
-            <button type="submit" class="btn btn-primary btn-block btn-large">Let me in.</button>
-            </form>
-            
-            <form method="post" action="getRegister">
-            <button type="submit" class="btn btn-primary btn-block btn-large">Register</button>
+        <form (ngSubmit)="onSubmit()" [formGroup]="loginForm" noValidate>
+            <div class="form-group">
+                <input type="email" class="form-control" id="email" formControlName="userEmail" 
+                    [class.is-invalid]="userEmail.invalid && userEmail.touched" placeholder="Email">
+                <small class="text-danger" [class.d-none]="userEmail.valid || userEmail.untouched">
+                    email is required!
+                </small>
+                <input type="password" class="form-control" id="pwd" formControlName="userPass" 
+                    [class.is-invalid]="userPass.invalid && userPass.touched" placeholder="password">
+                <small class="text-danger" [class.d-none]="userPass.valid || userPass.untouched">
+                password is required!
+                </small>
+                <button type="submit" class="btn btn-primary btn-block btn-large" >Let me in.</button>
+                <button type="submit" class="btn btn-primary btn-block btn-large" routerLink="/register">Register</button>
+            </div>
         </form>
 </div>

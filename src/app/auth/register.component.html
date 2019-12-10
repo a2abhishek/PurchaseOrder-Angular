@@ -1,49 +1,74 @@
 <div class="login">
         <h1> Registration Form </h1>
-    <form action="">
+    <form (ngSubmit)="onSubmit()" [formGroup]="userForm" noValidate>
         <div class="form-group">
             <table class=" table-responsive table table-hover table-borderless">
+              
                 <tr>
-                    <td><label for="userName" style="color: #fff;">Name :</label></td>
                     <td>
-                    <input type="text" path="userName" name="userName" id="userName" size="50"
-                        placeholder="Enter User name" />
+                        <label for="name">Name:</label>
                     </td>
-                    
+                    <td>
+                        <input type="text" class="form-control" id="name" formControlName="userName" 
+                            [class.is-invalid]="userName.invalid && userName.touched" >
+                            <div *ngIf="userName.invalid && userName.touched">
+                                <small *ngIf="userName.errors?.required" class="text-danger" >Name required!</small>
+                                <small *ngIf="userName.errors?.minlength" class="text-danger">Name must be minimum of 3 letters!</small>
+                            </div>
+                    </td>
                 </tr>
-
+               
                 <tr>
-                    <td><label for="email" style="color: #fff;">Email :</label></td>
                     <td>
-                    <input type="email" path="userEmail" name="email" id="email" size="50" />
+                        <label for="email">Email:</label>
                     </td>
-                    
-                </tr>
-                <tr>
-                    <td><label for="phone" style="color: #fff;">Mobile :</label></td>
                     <td>
-                    <input type="text" path="userPhone" name="phone" id="phone" pattern="[0-9]{10}" />
+                        <input type="email" class="form-control" id="email" formControlName="userEmail" 
+                            [class.is-invalid]="userEmail.invalid && userEmail.touched" >
+                        <small class="text-danger" [class.d-none]="userEmail.valid || userEmail.untouched">
+                            email is required!
+                        </small>
                     </td>
-                    
-                </tr>
-                <tr>
-                <tr>
-                    <td><label for="password" style="color: #fff;">Password :</label></td>
-                    <td>
-                    <input type="password" path="userPass" name="password" id="password" size="50" />
-                    </td>
-                    
-                <tr>
-                    <td><label for="addr" style="color: #fff;">Address :</label></td>
-                    <td>
-                    <input type="textarea" path="userAddress" name="addr" id="addr" />
-                    </td>
-            
                 </tr>
                 <tr>
-                
-                    <td></td>
-                    <td><button type="submit" class="btn btn-primary btn-block btn-large">Submit</button></td>
+                    <td>
+                        <label for="pwd">Password:</label>
+                    </td>
+                    <td>
+                        <input type="password" class="form-control" id="pwd" formControlName="userPass" 
+                            [class.is-invalid]="userPass.invalid && userPass.touched" >
+                        <small class="text-danger" [class.d-none]="userPass.valid || userPass.untouched">
+                        password is required!
+                        </small>
+                    </td>
+                <tr>
+                    <td>
+                        <label for="phone">Mobile:</label>
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" id="phone" formControlName="userPhone" 
+                            [class.is-invalid]="userPhone.invalid && userPhone.touched" >
+                        <div *ngIf="userPhone.invalid && userPhone.touched">
+                            <small *ngIf="userPhone.errors?.required" class="text-danger" >Phone required!</small>
+                            <small *ngIf="userPhone.errors?.minlength" class="text-danger">Phone must be of 10 digits</small>
+                        </div>
+                    </td>
+                </tr>
+      
+                <tr>
+                    <td>
+                        <label for="address">Address:</label>
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" id="address" formControlName="userAddress" 
+                            [class.is-invalid]="userAddress.invalid && userAddress.touched" >
+                        <small class="text-danger" [class.d-none]="userAddress.valid || userAddress.untouched">
+                                Address is required!
+                        </small>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2"><button type="submit" class="btn btn-primary btn-block btn-large">Submit</button></td>
                 </tr>
             </table>
         </div>
