@@ -11,9 +11,7 @@ const routes: Routes = [
   {path:'',redirectTo:'/',pathMatch:'full'},
   {path:'login',component:LoginComponent},
   {path:'register',component:RegisterComponent},
-  {
-    path: 'buyerPage',loadChildren: './buyer/buyer.module#BuyerModule'
-  },
+  
   {
     path: 'sellerPage',loadChildren: './seller/seller.module#SellerModule'
   },

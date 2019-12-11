@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
@@ -13,8 +13,8 @@ import { AuthService } from './auth.service';
   ]
 })
 export class LoginComponent implements OnInit {
-  logValue: boolean=false;
-
+  public logValue: boolean=false;
+  public loggedUser: string;
   ngOnInit() {
   }
   constructor(private fb:FormBuilder,private p:AuthService,private router:Router) { }
@@ -33,40 +33,38 @@ export class LoginComponent implements OnInit {
 
   
 
-  onSubmit()
-{
-  this.p.validateUser(this.loginForm.value.userEmail,this.loginForm.value.userPass).subscribe(
-    data=>{
-      let uObj = data;
-
-      this.logValue = true;
-
-      sessionStorage.setItem("userObj",JSON.stringify(uObj));
-      /*let obj=JSON.parse(sessionStorage.getItem("userObj"));
-      console.log(obj);*/
-
-      if(uObj.role == 'Buyer'){
-        alert("buyer");
-      this.router.navigate(['./buyerPage']);
+  onSubmit() {
+    this.p.validateUser(this.loginForm.value.userEmail,this.loginForm.value.userPass).subscribe(
+      data=>{
+        let uObj = data;
+        sessionStorage.setItem("userObj",JSON.stringify(uObj));
+        /*let obj=JSON.parse(sessionStorage.getItem("userObj"));
+        console.log(obj);*/
+        if(uObj.role == 'Buyer'){
+          alert("buyer");
+          this.loggedUser = 'buyer';
+        this.router.navigate(['./buyerPage']);
+        }
+        else if(uObj.role =='Seller'){
+          alert("seller");
+          this.loggedUser = 'seller';
+          this.router.navigate(['./sellerPage']);
+        }
+        else if(uObj.role == 'Vendor'){
+          alert("vendor");
+          this.loggedUser = 'vendor';
+          this.router.navigate(['./vendorPage']);
+        }
+        else
+        {
+          alert(" invalid!");
+          this.router.navigate(['./']);
       }
-      else if(uObj.role =='Seller'){
-        alert("seller");
-        this.router.navigate(['./sellerPage']);
+      
+      },
+      error=>{
+        alert("Email or Password is incorrect");
       }
-      else if(uObj.role == 'Vendor'){
-        alert("vendor");
-        this.router.navigate(['./vendorPage']);
-      }
-      else
-      {
-        alert(" invalid!");
-        this.router.navigate(['./']);
-     }
-     
-    },
-    error=>{
-      alert("Email or Password is incorrect");
-    }
-  );
+    );
   }
 }

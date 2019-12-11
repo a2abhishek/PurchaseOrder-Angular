@@ -6,10 +6,10 @@ import { BuyerRoutingModule } from './buyer-routing.module';
 
 
 @NgModule({
-  declarations: [BuyerComponent],
-  imports: [
-    CommonModule,BuyerRoutingModule
+  declarations: [BuyerComponent
   ],
+  imports: [
+    CommonModule,BuyerRoutingModule],
   exports: [ BuyerComponent ]
 })
 export class BuyerModule { }

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary" *ngIf="logValue==false &&  loggedUser==undefined">
   <a class="navbar-brand">Purchase Order</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
     aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -6,18 +6,84 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-
-      <div *ngIf="isValid">
         <a class="nav-item nav-link" routerLink="/login" routerLinkActive="active">Login<span
           class="sr-only">(current)</span></a>
         <a class="nav-item nav-link" routerLink="/register" routerLinkActive="active">Register</a>
         <a class="nav-item nav-link" routerLink="#" routerLinkActive="active">Don't know</a>
-      </div> 
-
-      
-    
-
     </div>
   </div>
 </nav>
+
+<div clas="container" *ngIf="logValue==true &&  loggedUser=='buyer'">
+  <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+      <!-- Brand -->
+    <a class="navbar-brand" href="#">Purchase Order</a>
+  
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <!-- Navbar links -->
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+      <ul class="navbar-nav">
+      <li class="nav-item active">
+            <h2 class="nav-link" >Hello buyer</h2>
+  
+      </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="RaisePo">Raise Purchase Order</a>
+        </li>
+        <li class="nav-item"><a class="nav-link" (click)="logout()">Logout</a></li>
+      </ul>
+    </div>
+  </nav>
+</div>
+
+
+<div clas="container" *ngIf="logValue==true &&  loggedUser=='seller'">
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+      <ul class="navbar-nav">
+          <li class="nav-item active">
+              <h3 class="nav-link">Hello {{user.userName}}</h3>
+
+          </li>
+          <li class="nav-item active">
+          <a class="nav-link" routerLink="homeSeller" routerLinkActive="active">Home</a>
+          </li> 
+          <li class="nav-item">
+              <a class="nav-link" (click)="logout()">Logout</a>
+          </li>
+          <li class="nav-item">
+                  <a routerLink="viewPoList" routerLinkActive="active"><button>Purchase Orders Raised</button></a>
+          </li> 
+      </ul>
+  </nav>
+</div>
+
+
+<div clas="container" *ngIf="logValue==true &&  loggedUser=='vendor'">
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <ul class="navbar-nav">
+        <li class="nav-item active">
+            <a class="nav-link" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" routerLink="viewAllVendorProducts">View All Vendor Products</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" routerLink="viewAllProducts">View All Products</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" routerLink="addProductQuantity">Update Product Quantity</a>
+        </li>
+        
+        <li class="nav-item"><a class="nav-link" (click)="logout()">Logout</a></li>
+    </ul>
+  </nav>
+</div>
+
+
 <router-outlet></router-outlet>
