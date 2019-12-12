@@ -1,0 +1,55 @@
+<div class="container">
+  <h1>Raise Purchase Order</h1>
+  <form>
+
+    <div class="form-group">
+      <label>Select Products :</label>
+      <select class="form-control" name="items" [(ngModel)]="pro" name="pro">
+        <option value="0">Select your products</option>
+        <option *ngFor="let p of productArray" [value]="p.productId">{{p.productName}}</option>
+      </select>
+    </div>
+    <br />
+    <div class="form-group">
+      <label>Select Quantity :</label>
+      <input type="number" class="form-control" name="quantity" placeholder="Quantity" id="quantity"
+        [(ngModel)]="quantity">
+    </div><br />
+    <div class="form-group">
+      <input type="button" value="Add" class="btn btn-dark add-row" (click)="onAdd()" />
+    </div>
+  </form>
+
+  <h3>Selected Products</h3>
+
+  <table class="table-responsive table-dark table table-hover">
+    <thead>
+      <tr>
+        <th>Select</th>
+        <th>Product Name</th>
+        <th>Quantity</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let arr of productsArrToDisplay;let i=index">
+        <th><input type="checkbox" name="record" [(ngModel)]="arr.isSelected"></th>
+        <th>{{arr.productName}}</th>
+        <th>{{arr.quantity}}</th>
+      </tr>
+
+    </tbody>
+  </table>
+  <div class="row">
+    <div class="col">
+      <button type="button" class="btn btn-dark" (click)="deleteRow()">Delete Row</button>
+    </div>
+    <div class="col">
+      <button type="submit" value="Raise PO" class="btn btn-dark" (click)="RaisePo()" id="purchaseOrder">Raise Purchase
+        Order</button></div>
+  </div>
+
+
+
+
+
+</div>

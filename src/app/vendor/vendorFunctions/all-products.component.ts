@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { VendorService } from '../vendor.service';
+import { Product } from 'src/app/models/Product';
 
 @Component({
   selector: 'app-all-products',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AllProductsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private vs:VendorService) { }
+  public productArray:Product[];
 
   ngOnInit() {
+    this.vs.getAllProducts().subscribe(data=>
+      this.productArray=data);
   }
 
 }

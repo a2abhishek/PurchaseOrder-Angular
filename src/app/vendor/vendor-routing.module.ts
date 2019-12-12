@@ -12,7 +12,6 @@ const adminroutes: Routes = [
   {path:'viewAllVendorProducts',component:VendorProductsComponent},
   {path:'viewAllProducts',component:AllProductsComponent},
   {path:'addProductQuantity',component:AddVendorProductsComponent}
-  // {path:'**',component:PageNotFoundComponent}
 ];
 
 @NgModule({

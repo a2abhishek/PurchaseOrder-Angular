@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -8,22 +9,17 @@ import { AuthService } from '../auth/auth.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  constructor(private router:Router) {}
   logValue: boolean;
   loggedUser: string;
   reload:boolean=true;
-  re(){
-    if(this.reload) {
-    window.location.reload();
-    this.reload=false;
-    }
-  }
-  user:any;
+  
+  user:any=undefined;
   ngOnInit() {
 
     var obj = JSON.parse(sessionStorage.getItem("userObj"));
     this.user=obj;
     console.log(obj);
-    console.log(obj.userName);
     if (obj === null) {
       this.logValue = false;
     }
@@ -44,5 +40,6 @@ export class HeaderComponent implements OnInit {
     this.logValue =false;
     this.loggedUser = undefined;
     sessionStorage.clear();
+    this.router.navigate(['/login']);
   }
 }

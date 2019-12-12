@@ -1,1 +1,25 @@
-<p>vendor-products works!</p>
+<div class="container">
+    <h1 style="color: #D98880;">Product List</h1>
+    
+    <table class="table table-borderless  table table-hover table-dark">
+        <thead>
+            <tr>
+                <th style="color: #D98880;">Product Name</th>
+                <th style="color: #D98880;">Available Quantity</th>
+
+            </tr>
+        </thead>
+        <tbody>
+         
+            <tr *ngFor="let p of vendorProducts">
+                <td>
+                    {{p.productName}}
+                </td>
+                <td>
+                    {{p.quantity}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>

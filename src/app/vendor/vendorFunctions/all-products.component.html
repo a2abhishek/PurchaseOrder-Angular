@@ -1,1 +1,19 @@
-<p>all-products works!</p>
+<div align="center">
+    <h1>Products </h1>
+<table class="table table-dark table-striped">
+        <thead>
+          <tr>
+            <th>Product Name</th>
+            <th>Product Description</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let p of productArray">
+            <td>{{p.productDesc}}</td>
+            <td>{{p.productName}}</td>
+            <td>{{p.productPrice}}</td>
+          </tr>
+        </tbody>
+      </table>
+</div>

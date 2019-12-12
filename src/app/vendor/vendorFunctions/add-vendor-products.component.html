@@ -1,1 +1,25 @@
-<p>add-vendor-products works!</p>
+  
+<div class="container">
+    <h1>Add Quantity to Products</h1>
+
+    <form >
+
+        <div class="form-group">
+            <label>Select Products :</label>
+            <select class="form-control" [(ngModel)]="productId" name="productId">
+                <option value="0">Select your products</option>
+                <option *ngFor="let p of productArray" [value]="p.productId">{{p.productName}}</option>
+            </select>
+        </div>
+        <br />
+        <div class="form-group">
+            <label>Select Quantity :</label>
+            <input type="number" class="form-control" name="quantity" placeholder="Quantity" id="quantity"
+            [(ngModel)]="quantity">
+        </div><br />
+        <div class="form-group">
+            <input type="button" value="Add" class="btn btn-dark add-row" (click)="addQuantity()" />
+        </div>
+    </form>
+
+</div>

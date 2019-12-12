@@ -13,8 +13,8 @@ import { AuthService } from './auth.service';
   ]
 })
 export class LoginComponent implements OnInit {
-  public logValue: boolean=false;
-  public loggedUser: string;
+  // public logValue: boolean=false;
+  // public loggedUser: string;
   ngOnInit() {
   }
   constructor(private fb:FormBuilder,private p:AuthService,private router:Router) { }
@@ -40,19 +40,20 @@ export class LoginComponent implements OnInit {
         sessionStorage.setItem("userObj",JSON.stringify(uObj));
         /*let obj=JSON.parse(sessionStorage.getItem("userObj"));
         console.log(obj);*/
+        location.reload(true);
         if(uObj.role == 'Buyer'){
           alert("buyer");
-          this.loggedUser = 'buyer';
+          //this.loggedUser = 'buyer';
         this.router.navigate(['./buyerPage']);
         }
         else if(uObj.role =='Seller'){
           alert("seller");
-          this.loggedUser = 'seller';
+          //this.loggedUser = 'seller';
           this.router.navigate(['./sellerPage']);
         }
         else if(uObj.role == 'Vendor'){
           alert("vendor");
-          this.loggedUser = 'vendor';
+          //loggedUser = 'vendor';
           this.router.navigate(['./vendorPage']);
         }
         else
