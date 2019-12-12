@@ -1,0 +1,44 @@
+<div align="center">
+	<div class="ListPO">
+		<div align="center">
+			<table border=1>
+				<tr>
+		
+					<th style="color: #fff">Purchase Order Id </th>				
+					<th style="color: #fff">Buyer Id </th>
+					<th style="color: #fff"> Seller Id </th>
+					
+					<th style="color: #fff"> View </th>
+				</tr>
+			
+                <tr *ngFor="let obj of purchaseOrders">	
+					<td style="color: #fff">{{obj.purchaseOrderId}}</td>
+					<td style="color: #fff">{{obj.buyerObj.userId}}</td>
+					<td style="color: #fff">{{obj.sellerObj.userId}}</td>
+					<td><a (click)="viewLineItems(obj.purchaseOrderId)" class="btn btn-primary btn-block btn-large">View</a></td> 
+				</tr>
+			</table>
+		</div>
+</div>
+<br>
+
+<div align="center" *ngIf="show">
+    <h2>Line Items</h2>
+    <div class="ListPO">
+      <div align="center">
+        <table border=1>
+          <tr>
+            <th style="color: #fff">Product Name</th>
+            <th style="color: #fff">Quantity </th>
+            <th style="color: #fff">Product Id </th>
+          </tr>
+          <tr *ngFor="let obj of lineItems">
+              <td style="color: #fff">{{obj.productObj.productName}}</td>
+              <td style="color: #fff">{{obj.poQuantity}}</td>
+              <td style="color: #fff">{{obj.productObj.productId}}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  

@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { SellerComponent } from './seller.component';
+import { ViewRaisedPoComponent } from './sellerFuntions/view-raised-po.component';
 
 
 const routes: Routes = [
-  {path:'',component:SellerComponent}
+  {path:'',component:SellerComponent},
+  {path:'viewPoList',component:ViewRaisedPoComponent},
 ];
 
 @NgModule({
