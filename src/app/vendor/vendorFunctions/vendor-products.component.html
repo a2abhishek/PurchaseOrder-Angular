@@ -4,7 +4,7 @@
     <table class="table table-borderless  table table-hover table-dark">
         <thead>
             <tr>
-                <th style="color: #D98880;">Product Name</th>
+                <th style="color: #D98880;">Product Id</th>
                 <th style="color: #D98880;">Available Quantity</th>
 
             </tr>
@@ -13,7 +13,7 @@
          
             <tr *ngFor="let p of vendorProducts">
                 <td>
-                    {{p.productName}}
+                    {{p.productObj.productName}}
                 </td>
                 <td>
                     {{p.quantity}}

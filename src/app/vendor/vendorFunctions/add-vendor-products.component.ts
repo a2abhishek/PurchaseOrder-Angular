@@ -24,15 +24,15 @@ export class AddVendorProductsComponent implements OnInit {
   }
 
   addQuantity(){
+    let uObj=JSON.parse(sessionStorage.getItem("userObj"));
+    let vendorId=uObj.userId;
+
+    console.log('Vendor Id : '+vendorId);
+
     console.log(this.productId+" "+this.quantity);
-    this.vs.addQuantity(this.productId,this.quantity).
+    this.vs.addQuantity(this.productId,this.quantity,vendorId).
     subscribe(data => console.log("Quantity Added"));
     alert("Quantity Added");
-    // let obj=new Vendor();
-   
-    // obj.productId=this.pro;
-    // obj.quantity=this.quantity;
-    // this.addQuantToProducts.push(obj);
   }
 
 }

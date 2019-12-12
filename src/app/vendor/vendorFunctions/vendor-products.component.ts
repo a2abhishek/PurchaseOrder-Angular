@@ -11,10 +11,13 @@ export class VendorProductsComponent implements OnInit {
   public vendorProducts:any;
 
   constructor(private vs:VendorService) { }
-
   ngOnInit(): void {
-    this.vs.viewAllVendorProducts().subscribe(data =>
-      this.vendorProducts = data);
+    let uObj=JSON.parse(sessionStorage.getItem("userObj"));
+    let vendorId=uObj.userId;
+
+    this.vs.viewAllVendorProducts(vendorId).subscribe(data =>
+      {this.vendorProducts = data;
+      console.log(this.vendorProducts);})
   }
   
 

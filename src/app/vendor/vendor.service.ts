@@ -17,11 +17,12 @@ export class VendorService {
   }
 
 
-  addQuantity(productId:number,quantity:number):Observable<any>{
-    console.log(productId,quantity);
-    return this.http.post<string>("http://localhost:8025/PurchaseOrderUI/updateProductQuantity?pId="+productId+"&&quantity="+quantity,null);
+  addQuantity(productId:number,quantity:number,vendorId:number):Observable<any>{
+    return this.http.get<any>("http://localhost:8025/PurchaseOrderUI/"+'updateProductQuantity?productId='+productId
+    +"&&quantity="+quantity+"&&vendorId="+vendorId,{responseType:'text' as 'json'});
   }
 
-  viewAllVendorProducts():Observable<Product[]> {
-    return this.http.get<Product[]>("http://localhost:8025/PurchaseOrderUI/viewAllAvailableProducts");
-  }}
+  viewAllVendorProducts(vendorId:number):Observable<Product[]> {
+    return this.http.get<Product[]>("http://localhost:8025/PurchaseOrderUI/viewAllAvailableProducts?vendorId="+vendorId);
+  }
+}
