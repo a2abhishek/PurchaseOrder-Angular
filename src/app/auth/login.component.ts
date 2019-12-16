@@ -1,8 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { UserService } from '../user.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from './auth.service';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,8 @@ export class LoginComponent implements OnInit {
   // public loggedUser: string;
   ngOnInit() {
   }
-  constructor(private fb:FormBuilder,private p:AuthService,private router:Router) { }
+  constructor(private fb:FormBuilder,private p:AuthService,private router:Router, private route:ActivatedRoute,
+    private header:HeaderComponent) { }
 
   loginForm = this.fb.group( {
     userEmail:['',Validators.required],
@@ -38,9 +40,11 @@ export class LoginComponent implements OnInit {
       data=>{
         let uObj = data;
         sessionStorage.setItem("userObj",JSON.stringify(uObj));
+        
         /*let obj=JSON.parse(sessionStorage.getItem("userObj"));
         console.log(obj);*/
-        location.reload(true);
+        //location.reload(true);
+        this.header.ngOnInit();
         if(uObj.role == 'Buyer'){
           alert("buyer");
           //this.loggedUser = 'buyer';
@@ -55,6 +59,12 @@ export class LoginComponent implements OnInit {
           alert("vendor");
           //loggedUser = 'vendor';
           this.router.navigate(['./vendorPage']);
+          
+        //  this.router.navigate(['/vendorPage'],{relativeTo:this.route})
+          // this.router.navigateByUrl('/header', { skipLocationChange: true }).then(() => {
+          //   this.router.navigate(['./vendorPage']);
+        // }); 
+
         }
         else
         {

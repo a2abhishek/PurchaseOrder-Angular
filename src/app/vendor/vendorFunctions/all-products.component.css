@@ -1,3 +1,7 @@
 div {
     overflow: visible;
 }
+.table-responsive {
+    max-height:700px;
+    max-width:650px;
+}

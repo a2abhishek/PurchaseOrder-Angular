@@ -12,11 +12,11 @@ export class HeaderComponent implements OnInit {
   constructor(private router:Router) {}
   logValue: boolean;
   loggedUser: string;
-  reload:boolean=true;
+  
   
   user:any=undefined;
   ngOnInit() {
-
+    
     var obj = JSON.parse(sessionStorage.getItem("userObj"));
     this.user=obj;
     console.log(obj);
@@ -42,4 +42,5 @@ export class HeaderComponent implements OnInit {
     sessionStorage.clear();
     this.router.navigate(['/login']);
   }
+ 
 }

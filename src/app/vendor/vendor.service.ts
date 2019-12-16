@@ -18,7 +18,7 @@ export class VendorService {
 
 
   addQuantity(productId:number,quantity:number,vendorId:number):Observable<any>{
-    return this.http.get<any>("http://localhost:8025/PurchaseOrderUI/"+'updateProductQuantity?productId='+productId
+    return this.http.get<any>("http://localhost:8025/PurchaseOrderUI/updateProductQuantity?productId="+productId
     +"&&quantity="+quantity+"&&vendorId="+vendorId,{responseType:'text' as 'json'});
   }
 

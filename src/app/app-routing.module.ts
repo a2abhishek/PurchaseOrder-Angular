@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './auth/login.component';
 import { RegisterComponent } from './auth/register.component';
+import { HeaderComponent } from './header/header.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'/',pathMatch:'full'},

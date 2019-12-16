@@ -5,7 +5,7 @@ import { ViewRaisedPoComponent } from './sellerFuntions/view-raised-po.component
 
 
 const routes: Routes = [
-  {path:'',component:SellerComponent},
+  {path:'sellerPage',component:SellerComponent},
   {path:'viewPoList',component:ViewRaisedPoComponent},
 ];
 

@@ -13,6 +13,7 @@ export class ViewRaisedPoComponent implements OnInit {
   show:boolean=false;
   constructor(private ss:SellerService, private router:Router) { }
   purchaseOrders:any;
+  
   ngOnInit() {
     this.ss.getAllPo().subscribe(data=>
       {this.purchaseOrders=data;console.log(this.purchaseOrders)});
